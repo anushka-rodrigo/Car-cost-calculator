@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1732979302 source:c:\users\user\documents\education work\usj work\year 1 semester 2\programming work\costanalysisforcar\main.cpp
+	<iostream>
+	<iomanip>
+	<string>
+	<cmath>
+
