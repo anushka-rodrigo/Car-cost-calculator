@@ -6,10 +6,12 @@
 using namespace std;
 
 int totalMaintenanceCost(int, int);
-int  totalOperationalCost(int, int);
+int  totalOperationalCost(int, int, int);
 int totalServiceCost(int, int);
 int totalOtherCost(int, int, float);
 int carDepreciation(int, float);
+float totalmonthlycost = 0.00;
+float ls = 0.00;
 
 void final_result (int, int, int, int, int, int);
 
@@ -52,7 +54,7 @@ int main()
     td=td+1000; //additional travels added 1000 km
 
     tmc = totalMaintenanceCost(td, n);
-    toc = totalOperationalCost(td, n);
+   toc = totalOperationalCost(td, n, td_month);
     tsc = totalServiceCost(td, n);
     totherc = totalOtherCost(td, n, price);
     cd = carDepreciation(n, price);
@@ -107,16 +109,17 @@ int totalMaintenanceCost(int td, int n){
 }
 
 
-int  totalOperationalCost(int td, int n){
+int  totalOperationalCost(int td, int n, int td_month){
     int toc=0;
+    float fuel;
     float tfc;
     int tic;
-    int distance;
-    int percentage;
+    float distance;
+    float percentage;
 
     cout<<"\t\tCalculating operational cost\n"<<endl;
     cout<<"Enter fuel price: Rs.";
-    cin>>tfc;
+    cin>>fuel;
     cout<<"Enter KM travelled per Liter: ";
     cin>>distance;
     cout<<"Enter car cost evaluated by insurance officer: Rs.";
@@ -125,7 +128,7 @@ int  totalOperationalCost(int td, int n){
     cin>>percentage;
     cout<<endl;
 
-    tfc=((float)td/(float)distance)*tfc;
+    tfc=((float)td/distance)*fuel;
     tic=(tic*percentage/100)*n;
 
     toc=tfc+tic;
@@ -138,6 +141,8 @@ int  totalOperationalCost(int td, int n){
     cout<<"Your total operational cost per 1 year\t: Rs."<<fixed<<setprecision(2)<<(float)toc/(n*12)<<endl;
     cout<<"\n======================================================================"<<endl;
 
+    totalmonthlycost = totalmonthlycost + (((float)td_month/distance)*fuel) + ((float)tic/(12.0*n));
+
     return toc;
 }
 
@@ -146,6 +151,7 @@ int totalServiceCost(int td, int n){
     int tet;
     float tfs;
     float tcw;
+    float carwash;
 
     cout<<"\t\tCalculating service cost\n"<<endl;
     cout<<"Enter vehicle emission test cost: Rs.";
@@ -153,12 +159,12 @@ int totalServiceCost(int td, int n){
     cout<<"Enter full service cost: Rs.";
     cin>>tfs;
     cout<<"Enter car wash cost: Rs.";
-    cin>>tcw;
+    cin>>carwash;
     cout<<endl;
 
     tet=tet*n;
     tfs=((float)td/5000)*tfs;
-    tcw=((12*n)-((float)td/5000))*tcw;
+    tcw=((12*n)-((float)td/5000))*carwash;
 
     tsc=tet+tfs+tcw;
 
@@ -170,6 +176,8 @@ int totalServiceCost(int td, int n){
     cout<<"Your total service cost per "<<n<<" years\t: Rs."<<fixed<<setprecision(2)<<(float)tsc<<endl;
     cout<<"Your total service cost per 1 year\t: Rs."<<fixed<<setprecision(2)<<(float)tsc/(n*12)<<endl;
     cout<<"======================================================================"<<endl;
+
+    totalmonthlycost = totalmonthlycost + (tfs/(12.0*n)) + carwash;
 
     return tsc;
 }
@@ -191,19 +199,25 @@ int totalOtherCost(int td, int n, float price){
     cin>>r;
     cout<<endl;
 
-    sc=price*sc/100*n;
+    sc=price*sc/100;
+    sc=sc*0.25*n;
     lr=a*r/100;
+    ls =ls + (a/(12*n));
+    ls = ls + (lr*(1.0/(12*n)));
 
     totherc=sc+lr+a;
 
     cout<<"Total supplementary cost for "<<n<<" years\t: Rs."<<fixed<<setprecision(2)<<(float)sc<<endl;
-    cout<<"Total lease rate for "<<n<<" years\t\t: Rs."<<fixed<<setprecision(2)<<(float)lr<<endl;
+    cout<<"Total lease rate for "<<n<<" years\t: Rs."<<fixed<<setprecision(2)<<(float)lr<<endl;
     cout<<"Total lease for "<<n<<" years\t\t\t: Rs."<<fixed<<setprecision(2)<<(float)a<<endl;
     cout<<endl;
 
     cout<<"Your total service cost per "<<n<<" years\t: Rs."<<fixed<<setprecision(2)<<(float)totherc<<endl;
     cout<<"Your total service cost per 1 year\t: Rs."<<fixed<<setprecision(2)<<(float)totherc/(n*12)<<endl;
     cout<<"\n======================================================================"<<endl;
+
+    totalmonthlycost = totalmonthlycost + ls + (sc/3.0);
+
     return totherc;
 }
 
@@ -222,10 +236,11 @@ int carDepreciation(int n, float price){
 void final_result (int tmc, int toc, int tsc, int totherc, int cd, int n){
     cout<<"\t\tFinal cost\n"<<endl;
     int sum = tmc + toc + tsc + totherc;
-    cout<<"Total cost for vehicle for "<<n<<" years\t: Rs."<<fixed<<setprecision(2)<<(float)sum<<endl;
-    cout<<"Total cost for vehicle for 1 year\t: Rs."<<fixed<<setprecision(2)<<(float)sum/n<<endl;
-    cout<<"Total cost for vehicle for 1 month\t: Rs."<<fixed<<setprecision(2)<<(float)sum/(n*12)<<endl;
-    cout<<"\nCar value left after "<<n<<" years\t\t: Rs."<<fixed<<setprecision(2)<<(float)cd<<endl;
+    cout<<"Total cost for vehicle for "<<n<<" years\t\t: Rs."<<fixed<<setprecision(2)<<(float)sum<<endl;
+    cout<<"Lease settlement for vehicle for 1 month\t: Rs."<<fixed<<setprecision(2)<<ls<<endl;
+    cout<<"Total cost for vehicle for 1 month\t\t: Rs."<<fixed<<setprecision(2)<<totalmonthlycost<<endl;
+    cout<<"Total Monthly cost without lease settlement\t: Rs."<<fixed<<setprecision(2)<<totalmonthlycost-ls<<endl;
+    cout<<"\nCar value left after "<<n<<" years: Rs."<<fixed<<setprecision(2)<<(float)cd<<endl;
     cout<<"\nThank you for using our system!\nHave a nice day!";
     cout<<"\n======================================================================"<<endl;
 
