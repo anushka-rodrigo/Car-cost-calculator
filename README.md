@@ -1,9 +1,9 @@
-# Vehicle Total Cost of Ownership (TCO) Calculator – v1
+# Vehicle Total Cost of Ownership (TCO) Calculator – version 1
 
 ## 📌 Overview
 Purchasing a vehicle is one of the largest financial decisions an individual can make. In economies such as Sri Lanka’s—where fuel price volatility, import taxes, depreciation, and maintenance costs significantly impact ownership—making a **data-driven decision** is essential.
 
-This repository contains **v1 of a console-based application** developed to support an academic research project that constructs a **mathematical model** for analyzing the **Total Cost of Ownership (TCO)** of vehicles. The application evaluates vehicle ownership costs over a defined period by systematically incorporating purchase price, depreciation, maintenance, operating, service, and ancillary costs.
+This repository contains **version 1, a console-based application** developed to support an academic research project that constructs a **mathematical model** for analyzing the **Total Cost of Ownership (TCO)** of vehicles. The application evaluates vehicle ownership costs over a defined period by systematically incorporating purchase price, depreciation, maintenance, operating, service, and ancillary costs.
 
 The tool is designed to convert subjective vehicle purchasing decisions into **objective, quantifiable economic comparisons**.
 
@@ -76,7 +76,7 @@ These assumptions are aligned with the academic research and can be modified in 
 ---
 
 ## 🚀 Future Improvements
-In **v2**, the application will be rebuilt using a **different technology stack** and will include a **front-end UI** to make the tool more user-friendly and interactive. This version will also allow easier data input and improved visualization of cost breakdowns.
+In **version 2**, the application will be rebuilt using a **different technology stack** and will include a **front-end UI** to make the tool more user-friendly and interactive. This version will also allow easier data input and improved visualization of cost breakdowns.
 
 ---
 
