@@ -3,7 +3,7 @@
 ## 📌 Overview
 Purchasing a vehicle is one of the largest financial decisions an individual can make. In economies such as Sri Lanka’s—where fuel price volatility, import taxes, depreciation, and maintenance costs significantly impact ownership—making a **data-driven decision** is essential.
 
-This repository contains **version 1, a console-based application** developed to support an academic research project that constructs a **mathematical model** for analyzing the **Total Cost of Ownership (TCO)** of vehicles. The application evaluates vehicle ownership costs over a defined period by systematically incorporating purchase price, depreciation, maintenance, operating, service, and ancillary costs.
+This repository contains **version 1, a console-based application** developed to support an academic research project that constructs a **mathematical model** for analyzing the **Total Cost of Ownership (TCO)** of vehicles. The application evaluates vehicle ownership costs over a defined period by systematically incorporating purchase price, depreciation, maintenance, operating, service, and ancillary costs. This is a basic console application.
 
 The tool is designed to convert subjective vehicle purchasing decisions into **objective, quantifiable economic comparisons**.
 
